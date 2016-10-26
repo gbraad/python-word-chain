@@ -1,0 +1,19 @@
+image: registry.gitlab.com/gbraad/fedora:24
+
+before_script:
+  - dnf install -y python3 python3-pip python3-virtualenv
+
+run_implementation_1:
+  script:
+    - virtualenv-3.5 test
+    - source test/bin/activate
+    - pip install requests nltk networkx
+    - python3 wordchain-nltk-networkx.py
+  when: manual
+
+run_implementation_2:
+  script:
+    - virtualenv-3.5 test
+    - source test/bin/activate
+    - pip install requests
+    - python3 wordchain-simplegraph-bfs.py
